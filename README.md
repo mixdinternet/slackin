@@ -24,10 +24,12 @@ Abra o arquivo `config/app.php` e adicione
 `Mixdinternet\Slackin\Providers\SlackinServiceProvider::class`
 
 
-## Configurações
-
-É possivel a troca de algumas configurações em `config/mslackin.php`
+## Publicando os arquivos necessários
 
 ```
-  php artisan vendor:publish --provider="Mixdinternet\Slackin\Providers\SlackinServiceProvider" --tag="config"`
+$ php artisan vendor:publish --provider="Mixdinternet\Slackin\Providers\SlackinServiceProvider" --tag=install
 ```
+
+## Adicionar Slack Token no arquivo `.env`
+
+`SLACK_TOKEN=04DXFkUoacNy42yo0qWIrLpSrJzXQkEYnS9BAiRpgsrNT7TjXj`
