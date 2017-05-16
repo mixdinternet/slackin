@@ -2,78 +2,61 @@
 <html lang="pt-BR">
 
 <head>
-    {{--
-    <meta charset="UTF-8">
-    <title>@if($team['name']) {{$team['name']}} @else {{'Lumen Slackin'}} @endif</title>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    @if($team['icon'])
-        <link rel="icon" href="{{$team['icon']['image_132']}}"/>
-    @endif
-    --}}
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+    <link rel=manifest href="manifest.json">
+    <title>{!! $slack->team->name !!}</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../assets/css/frontend.min.css">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
-<div class="container">
+
+<header>
     <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-            <div id="logo">
-                <a href="https://{{ $slack->team->domain }}.slack.com">
-                    <img src="{{ $slack->team->icon->image_132 }}"/>
-                </a>
-            </div>
-
-            <div id="message">
-                {!! $slack->team->name !!}
-                {!! $slack->team->domain !!}
-            </div>
-
-            <div id="form-invite" class="col-sm-6 col-sm-offset-3">
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                @if (session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
-
-                <form action="{{ route('slackin.invite') }}" method="post" class="form-horizontal" role="form">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="email"
-                               placeholder="Email"/>
-                        @if($errors->has('email'))
-                            <div class="help-block">
-                                {{ $errors->first('email') }}
-                            </div>
-                        @endif
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" class="form-control btn btn-default"
-                               value="Enviar"/>
-                    </div>
-                </form>
-            </div>
+        <div class="columns medium-12">
+            <div class="before"></div>
+            <img src="{{ $slack->team->icon->image_132 }}" id="logotipo" alt="{!! $slack->team->name !!}">
+            <p>
+                Entre para nossa comunidade no Slack. <br>
+                Receba um convite deixando seu email abaixo.
+            </p>
+            <div class="after"></div>
         </div>
     </div>
-</div>
-<footer>
+</header>
 
-</footer>
+<main>
+    <div class="row">
+        <div id="form-invite" class="columns medium-12">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            <form action="{{ route('slackin.invite') }}" method="post" class="form-horizontal" role="form">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                <div class="input">
+                    <input type="text" class="txt" name="email" placeholder="Digite seu email">
+                    <input type="submit" value="" class="submit">
+                </div>
+                <p>
+                    Se você ainda não tem uma conta no Slack será necessário criar.
+                </p>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+<script src="../assets/js/frontend.min.js"></script>
 </body>
-</html>

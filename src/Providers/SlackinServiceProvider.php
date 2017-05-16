@@ -55,6 +55,9 @@ class SlackinServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../config' => base_path('config'),
-        ], 'config');
+            __DIR__ . '/../resources/lang' => base_path('resources/lang'),
+            __DIR__ . '/../resources/vendor' => base_path('resources/views/vendor'),
+            __DIR__ . '/../public/assets' => public_path('assets'),
+        ], 'install');
     }
 }
