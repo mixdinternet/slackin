@@ -50,13 +50,12 @@ class SlackinServiceProvider extends ServiceProvider
     protected function publish()
     {
         $this->publishes([
-            __DIR__ . '/../resources/views' => base_path('resources/views/vendor/mixdinternet/slackin'),
+            __DIR__ . '/../resources/views' => base_path('resources/views/mixdinternet/slackin'),
         ], 'views');
 
         $this->publishes([
             __DIR__ . '/../config' => base_path('config'),
             __DIR__ . '/../resources/lang' => base_path('resources/lang'),
-            __DIR__ . '/../resources/vendor' => base_path('resources/views/vendor'),
             __DIR__ . '/../public/assets' => public_path('assets'),
         ], 'install');
     }
